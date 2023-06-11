@@ -25,6 +25,43 @@ listint_t *reverse_listint(listint_t **head)
 }
 
 /**
+ * copy_listint - Cops a listint_t linked list.
+ * @head: Pointer to the head pointer if the listint_t list
+ *
+ * Return: a pointer to the first node of the copied list
+ */
+listint_t *copy_listint(listint_t **head)
+{
+	listint_t *node, *newHead = NULL, *tmp = NULL, *current;
+
+	if (!head)
+		return (NULL);
+
+	current = *head;
+	while (current)
+	{
+		node = malloc(sizeof(listint_t));
+		if (!node)
+			return (NULL);
+		node->n = current->n;
+		node->next = NULL;
+		if (!newHead)
+		{
+			newHead = node;
+			tmp = newHead;
+		}
+		else
+		{
+			tmp->next = node;
+			tmp = tmp->next;
+		}
+		current = current->next;
+
+	}
+	return (newHead);
+
+}
+/**
  * is_palindrome - Checks if a singly linked list is a palindrome.
  * @head: Pointer to the head pointer if the listint_t list
  *
@@ -39,7 +76,8 @@ int is_palindrome(listint_t **head)
 		return (isPalindrome);
 
 	current = *head;
-	reversed = reverse_listint(head);
+	reversed = copy_listint(head);
+	reversed = reverse_listint(&reversed);
 
 	while (current && reversed)
 	{
@@ -51,5 +89,6 @@ int is_palindrome(listint_t **head)
 		current = current->next;
 		reversed = reversed->next;
 	}
+	free_listint(reversed);
 	return (isPalindrome);
 }
