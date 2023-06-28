@@ -1,12 +1,24 @@
 #!/usr/bin/python3
+
+"""Define classes Node and SingLinkedList for a singly-linked list."""
+
+
 class Node:
+    """Represent a node in a singly-linked list."""
 
     def __init__(self, data, next_node=None):
+        """Initialize a new Node.
+
+        Args:
+            data (int): The data of the new Node.
+            next_node (Node): The next node of the new Node.
+        """
         self.data = data
         self.next_node = next_node
 
     @property
     def data(self):
+        """Get/Set the data of the Node."""
         return self.__data
 
     @data.setter
@@ -18,6 +30,7 @@ class Node:
 
     @property
     def next_node(self):
+        """Get/Set the next_node of the Node."""
         return self.__next_node
 
     @next_node.setter
@@ -29,11 +42,21 @@ class Node:
 
 
 class SinglyLinkedList:
+    """Represent a singly-linked list."""
 
     def __init__(self):
+        """Initializes a new SinglyLinkedList. """
         self.__head = None
 
     def sorted_insert(self, value):
+        """Insert a new Node to the SinglyLinkedList.
+
+        The node is inserted into the list depending
+        on it value in ascending order.
+
+        Args:
+            value (Node): The new Node to insert.
+        """
         NewNode = Node(value)
         if self.__head is None:
             self.__head = NewNode
@@ -56,14 +79,18 @@ class SinglyLinkedList:
             prev.next_node = NewNode
 
     def print_all(self):
+        """Gets the string to print
+
+        Returns:
+            str: The string to print
+        """
+
+    def __str__(self):
+        """Define the print() representation of a SinglyLinkedList."""
         nodes = ""
         current = self.__head
-        while current:
+        while current is not None:
             nodes += str(current.data)
             nodes += "\n" if current.next_node else ""
             current = current.next_node
-
         return nodes
-
-    def __str__(self):
-        return self.print_all()
