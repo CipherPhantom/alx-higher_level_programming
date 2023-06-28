@@ -2,7 +2,7 @@
 class Square:
 
     def __init__(self, size=0):
-        self.__size = size
+        self.size = size
 
     @property
     def size(self):
@@ -24,6 +24,7 @@ class Square:
         for i in range(self.__size):
             for j in range(self.__size):
                 print("#", end="")
-            if i + 1 < self.__size:
-                print()
-        print()
+            print()
+
+        if self.__size == 0:
+            print()
