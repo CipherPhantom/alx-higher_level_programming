@@ -15,9 +15,9 @@ class Rectangle:
             width (int): width of the Rectangle
             height (int): height of Rectangle
         """
-        self.height = height
         self.width = width
-
+        self.height = height
+        
         type(self).number_of_instances += 1
 
     @property
@@ -48,7 +48,11 @@ class Rectangle:
 
     @classmethod
     def square(cls, size=0):
-        """Returns a Rectangle with width and height as size"""
+        """Returns a new Rectangle
+
+        Args:
+            size (int): The height and width of the Rectangle
+        """
         return cls(size, size)
 
     def area(self):
