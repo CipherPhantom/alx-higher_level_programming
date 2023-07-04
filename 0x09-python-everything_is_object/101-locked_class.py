@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Defines a LockedClass"""
 
+
 class LockedClass:
     """Represents a locked class
 
@@ -8,7 +9,7 @@ class LockedClass:
         __slots__ : restrict the class to have allowed attribute,
     """
     __slots__ = ('first_name',)
-    
+
     def __setattr__(self, name, value):
         """Sets the allowed attribute of the LockedClass
 
@@ -20,4 +21,3 @@ class LockedClass:
             msg = f"'LockedClass' object has no attribute '{name}'"
             raise AttributeError(msg)
         super().__setattr__(name, value)
-
