@@ -15,11 +15,3 @@ def max_integer(list=[]):
         if list[i] > result:
             result = list[i]
         i += 1
-    return result
-
-if __name__ == "__main__": 
-
-    print(max_integer(["haz", "har"]))
-    print(max_integer("Hello"))
-    print(max_integer("Mist"))
-    print(max_integer("abxd"))
