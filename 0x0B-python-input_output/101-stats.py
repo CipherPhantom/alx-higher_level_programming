@@ -11,24 +11,23 @@ def print_stats(file_size, stats):
 
 
 if __name__ == "__main__":
-    import sys, time
+    import sys
 
-    
     file_size = 0
     possible_codes = ["200", "301", "400", "401", "403", "404", "405", "500"]
     stats = {}
     count = 0
-    
+
     try:
         for line in sys.stdin:
             count += 1
             line = line.split()
-            
+
             try:
                 file_size += int(line[-1])
             except (IndexError, ValueError):
                 pass
-             
+
             try:
                 if line[-2] in possible_codes:
                     if stats.get(line[-2], -1) == -1:
@@ -37,10 +36,9 @@ if __name__ == "__main__":
                         stats[line[-2]] += 1
             except IndexError:
                 pass
-            
+
             if count % 10 == 0:
                 print_stats(file_size, stats)
-            
 
         print_stats(file_size, stats)
     except KeyboardInterrupt:
