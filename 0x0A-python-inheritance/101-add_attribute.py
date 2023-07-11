@@ -6,14 +6,13 @@ def add_attribute(obj, attr_name, attr_value):
     """Adds attribute to an object
 
     Args:
-        obj (`obj`): The object
-        attr_name: Attribute_name
-        attr_value: Attribute_vale
+        obj (any): The object
+        attr_name (str): Attribute_name
+        attr_value (any): Attribute_value
 
     Raises:
         TypeError: If the object can’t have new attribute
     """
-    if hasattr(obj, attr_name):
+    if not hasattr(obj, "__dict__"):
         raise TypeError("can't add new attribute")
     setattr(obj, attr_name, attr_value)
-
