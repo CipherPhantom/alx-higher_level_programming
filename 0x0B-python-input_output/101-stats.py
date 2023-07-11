@@ -32,6 +32,12 @@ if __name__ == "__main__":
                     if value > 0:
                         stats_text += f"{key}: {value}\n"
                 print(stats_text, end="")
+        stats_text = ""
+        stats_text += f"File size: {file_size}\n"
+        for key, value in stats.items():
+            if value > 0:
+                stats_text += f"{key}: {value}\n"
+            print(stats_text, end="")
 
     except KeyboardInterrupt as e:
         stats_text = ""
