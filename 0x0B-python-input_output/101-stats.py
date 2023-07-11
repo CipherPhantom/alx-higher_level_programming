@@ -1,49 +1,48 @@
 #!/usr/bin/python3
 """A script that reads stdin line by line and computes metrics."""
 
+
+def print_stats(file_size, stats):
+    """Prints total file size and valid codes count."""
+
+    print("File size: {}".format(file_size))
+    for code in sorted(stats):
+        print("{}: {}".format(code, stats[code]))
+
+
 if __name__ == "__main__":
     import sys, time
 
-
+    
     file_size = 0
-    stats = {
-            "200": 0,
-            "301": 0,
-            "400": 0,
-            "401": 0,
-            "403": 0,
-            "404": 0,
-            "405": 0,
-            "500": 0
-    }
-
+    possible_codes = ["200", "301", "400", "401", "403", "404", "405", "500"]
+    stats = {}
+    count = 0
+    
     try:
-        count = 0
         for line in sys.stdin:
             count += 1
-            info = line.split()
-            file_size += int(info[-1])
-            stats[info[-2]] += 1
-
+            line = line.split()
+            
+            try:
+                file_size += int(line[-1])
+            except (IndexError, ValueError):
+                pass
+             
+            try:
+                if line[-2] in possible_codes:
+                    if stats.get(line[-2], -1) == -1:
+                        stats[line[-2]] = 1
+                    else:
+                        stats[line[-2]] += 1
+            except IndexError:
+                pass
+            
             if count % 10 == 0:
-                stats_text = ""
-                stats_text += f"File size: {file_size}\n"
-                for key, value in stats.items():
-                    if value > 0:
-                        stats_text += f"{key}: {value}\n"
-                print(stats_text, end="")
-        stats_text = ""
-        stats_text += f"File size: {file_size}\n"
-        for key, value in stats.items():
-            if value > 0:
-                stats_text += f"{key}: {value}\n"
-            print(stats_text, end="")
+                print_stats(file_size, stats)
+            
 
-    except KeyboardInterrupt as e:
-        stats_text = ""
-        stats_text += f"File size: {file_size}\n"
-        for key, value in stats.items():
-            if value > 0:
-                stats_text += f"{key}: {value}\n"
-        print(stats_text, end="")
+        print_stats(file_size, stats)
+    except KeyboardInterrupt:
+        print_stats(file_size, stats)
         raise
