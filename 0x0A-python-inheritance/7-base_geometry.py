@@ -9,7 +9,7 @@ class BaseGeometry:
         """Not yet implemented"""
         raise Exception("area() is not implemented")
 
-    def integer_validator(self, name, value=None):
+    def integer_validator(self, name, value):
         """Validates if value is an integer greater than 0
         Args:
             name (str): The name of the paremeter
