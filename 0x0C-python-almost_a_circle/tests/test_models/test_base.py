@@ -384,3 +384,7 @@ class TestBase_LoadFromFile(unittest.TestCase):
         for filename in self.filenames:
             if os.path.isfile(filename):
                 os.remove(filename)
+
+
+if __name__ == '__main__':
+    unittest.main()

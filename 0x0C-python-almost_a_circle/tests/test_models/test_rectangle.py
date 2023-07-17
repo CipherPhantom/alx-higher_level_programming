@@ -698,3 +698,7 @@ class TestRectangle___Str__(unittest.TestCase):
         r = Rectangle(3, 4, 1, 2)
         print(r)
         self.assertEqual(mock_stdout.getvalue(), str(r) + "\n")
+
+
+if __name__ == '__main__':
+    unittest.main()
