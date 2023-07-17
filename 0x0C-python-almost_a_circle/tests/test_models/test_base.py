@@ -11,9 +11,42 @@
 import os
 import json
 import unittest
+import models
 from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
+
+
+class TestBase_Documentation(unittest.TestCase):
+    """Unittest for documentation."""
+
+    def test_base_module(self):
+        self.assertIsNotNone(models.base.__doc__)
+        self.assertNotEqual(models.base.__doc__, "")
+
+    def test_Base_class(self):
+        self.assertIsNotNone(Base.__doc__)
+        self.assertNotEqual(Base.__doc__, "")
+
+    def test_to_json_string_method(self):
+        self.assertIsNotNone(Base.to_json_string.__doc__)
+        self.assertNotEqual(Base.to_json_string.__doc__, "")
+
+    def test_from_json_string_method(self):
+        self.assertIsNotNone(Base.from_json_string.__doc__)
+        self.assertNotEqual(Base.from_json_string.__doc__, "")
+
+    def test_create_method(self):
+        self.assertIsNotNone(Base.create.__doc__)
+        self.assertNotEqual(Base.create.__doc__, "")
+
+    def test_save_to_file_method(self):
+        self.assertIsNotNone(Base.save_to_file.__doc__)
+        self.assertNotEqual(Base.save_to_file.__doc__, "")
+
+    def test_load_from_file_method(self):
+        self.assertIsNotNone(Base.load_from_file.__doc__)
+        self.assertNotEqual(Base.load_from_file.__doc__, "")
 
 
 class TestBase_Initialization(unittest.TestCase):

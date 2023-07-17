@@ -7,12 +7,37 @@
     TestSquare_ToDictionary - line 300
     TestSquare___Str__  - line 365
 """
+import models
 import unittest
 import unittest.mock
 from io import StringIO
 from models.base import Base
 from models.square import Square
 from models.rectangle import Rectangle
+
+
+class TestSquare_Documentation(unittest.TestCase):
+    """Unittest for the documentation."""
+
+    def test_Square_module(self):
+        self.assertIsNotNone(models.square.__doc__)
+        self.assertNotEqual(models.square.__doc__, "")
+
+    def test_Sqaure_class(self):
+        self.assertIsNotNone(Square.__doc__)
+        self.assertNotEqual(Square.__doc__, "")
+
+    def test_update_method(self):
+        self.assertIsNotNone(Square.update.__doc__)
+        self.assertNotEqual(Square.update.__doc__, "")
+
+    def test_to_dictionary_method(self):
+        self.assertIsNotNone(Square.to_dictionary.__doc__)
+        self.assertNotEqual(Square.to_dictionary.__doc__, "")
+
+    def test___str___method(self):
+        self.assertIsNotNone(Square.__str__.__doc__)
+        self.assertNotEqual(Square.__str__.__doc__, "")
 
 
 class TestSquare_Initialization(unittest.TestCase):

@@ -12,11 +12,44 @@
     TestRectangle_ToDictionary - line 617
     TestRectangle___Str__  - line 688
 """
+import models
 import unittest
 import unittest.mock
 from io import StringIO
 from models.base import Base
 from models.rectangle import Rectangle
+
+
+class TestRectangle_Documentation(unittest.TestCase):
+    """Unittest for the documentation."""
+
+    def test_rectangle_module(self):
+        self.assertIsNotNone(models.rectangle.__doc__)
+        self.assertNotEqual(models.rectangle.__doc__, "")
+
+    def test_rectagle_class(self):
+        self.assertIsNotNone(Rectangle.__doc__)
+        self.assertNotEqual(Rectangle.__doc__, "")
+
+    def test_area_method(self):
+        self.assertIsNotNone(Rectangle.area.__doc__)
+        self.assertNotEqual(Rectangle.area.__doc__, "")
+
+    def test_display_method(self):
+        self.assertIsNotNone(Rectangle.display.__doc__)
+        self.assertNotEqual(Rectangle.display.__doc__, "")
+
+    def test_update_method(self):
+        self.assertIsNotNone(Rectangle.update.__doc__)
+        self.assertNotEqual(Rectangle.update.__doc__, "")
+
+    def test_to_dictionary_method(self):
+        self.assertIsNotNone(Rectangle.to_dictionary.__doc__)
+        self.assertNotEqual(Rectangle.to_dictionary.__doc__, "")
+
+    def test___str___method(self):
+        self.assertIsNotNone(Rectangle.__str__.__doc__)
+        self.assertNotEqual(Rectangle.__str__.__doc__, "")
 
 
 class TestRectangle_Initialization(unittest.TestCase):
