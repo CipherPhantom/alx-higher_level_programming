@@ -22,7 +22,6 @@ if __name__ == "__main__":
     for state in query.all():
         print("{}: {}".format(state.id, state.name))
         for city in state.cities:
-            print("    ", end="")
-            print("{}: {}".format(city.id, city.name))
+            print("\t{}: {}".format(city.id, city.name))
 
     session.close()
