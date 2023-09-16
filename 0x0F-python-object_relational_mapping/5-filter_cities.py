@@ -25,15 +25,16 @@ if __name__ == "__main__":
     FROM cities
     JOIN states
     ON cities.state_id = states.id
-    WHERE states.name = %(state_name)s
+    WHERE states.name LIKE BINARY '{}'
     ORDER BY cities.id;
-    """
-    cur.execute(stmt, {"state_name": state_name})
+    """.format(state_name)
+    cur.execute(stmt)
     query_rows = cur.fetchall()
     for i in range(len(query_rows)):
         if i + 1 < len(query_rows):
             print(query_rows[i][0], end=", ")
         else:
-            print(query_rows[i][0])
+            print(query_rows[i][0], end="")
+    print()
     cur.close()
     conn.close()
