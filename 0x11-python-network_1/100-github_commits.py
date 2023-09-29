@@ -10,7 +10,7 @@ import requests
 
 if __name__ == "__main__":
     url = "  https://api.github.com/repos/{}/{}/commits"
-    response = requests.get(url.format(sys.argv[1], sys.argv[2]))
+    response = requests.get(url.format(sys.argv[2], sys.argv[1]))
     count = 0
     for commit in response.json():
         if count == 10:
