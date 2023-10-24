@@ -4,23 +4,33 @@
 const request = require('request');
 
 const id = process.argv[2];
-request(`https://swapi-api.alx-tools.com/api/films/${id}`,
-  (error, response, body) => {
-    if (error) {
-      console.log(error);
-    } else {
-      const data = JSON.parse(body);
 
-      data.characters.forEach((character) => {
-        request(character, (error, response, body) => {
-          if (error) {
-            console.log(error);
-          } else {
-            const data = JSON.parse(body);
-
-            console.log(data.name);
-          }
-        });
-      });
-    }
+async function makeSyncRequest (url) {
+  return new Promise((resolve, reject) => {
+    request(url, (error, response, body) => {
+      if (error) {
+        reject(error);
+      } else if (response.statusCode === 200) {
+        resolve(body);
+      } else {
+        reject(new Error(`Request failed with status code ${response.statusCode}`));
+      }
+    });
   });
+}
+
+async function main (id) {
+  try {
+    const response = await makeSyncRequest(`https://swapi-api.alx-tools.com/api/films/${id}`);
+    const characters = JSON.parse(response).characters;
+    for (const character of characters) {
+      const response = await makeSyncRequest(character);
+      const data = JSON.parse(response);
+      console.log(data.name);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+main(id);
