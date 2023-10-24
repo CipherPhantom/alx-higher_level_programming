@@ -9,12 +9,11 @@ request(process.argv[2],
     if (error) {
       console.log(error);
     } else {
-      const data = JSON.parse(body);
-      const films = data.results;
+      const films = JSON.parse(body).results;
       let count = 0;
 
       for (const film of films) {
-        if (film.characters.includes('https://swapi-api.alx-tools.com/api/people/18/')) {
+        if (film.characters.find((character) => character.endsWith('/18/'))) {
           count++;
         }
       }
