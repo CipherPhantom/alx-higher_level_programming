@@ -2,8 +2,9 @@
 // using this URL: https://swapi-api.alx-tools.com/api/films/?format=json
 
 $.get('https://swapi-api.alx-tools.com/api/films/?format=json',
-(data) => {
+  (data) => {
     $.each(data.results, (index, film) => {
-        $('UL#list_movies').append(`<li>${film.title}</li>`);
-    })
-})
+      $('UL#list_movies').append(`<li>${film.title}</li>`);
+    });
+  }
+);
